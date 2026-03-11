@@ -44,24 +44,25 @@ Monolithic learning platform for Web Cyber Security using AI-generated syllabus,
 
 #### Home, Syllabus, Topic, AI Tutor, Quiz, Practice Lab pages with AI-generated content and progress tracking.
 
-![Home](image-1.png)
+![alt text](<preview/home.png>)
 
 #### Topic page with AI-generated content and progress tracking.
 
-![Generated Topic](image-2.png)
+![alt text](<preview/topic.png>)
 
 #### Syllabus page with AI-generated topics and progress indicators.
 
-![Generated Syllabus](image.png)
-
-#### AI Tutor chat interface for asking questions and getting AI responses.
-
-![AI Tutor](image-3.png)
-
-#### Quiz page with AI-generated questions and answers.
-
-![Generated Quiz](image-4.png)
+![Generated Syllabus](<preview/syllabus.png>)
 
 #### Practice Lab page with AI-generated lab instructions and tasks.
 
-![Generated Practice Lab](image-5.png)
+![Generated Practice Lab](<preview/practice.png>)
+
+#### Quiz page with AI-generated questions and answers.
+
+![Generated Quiz](<preview/quiz.png>)
+
+
+#### AI Tutor chat interface for asking questions and getting AI responses.
+
+![AI Tutor](<preview/tutor.png>)
