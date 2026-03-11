@@ -6,8 +6,12 @@ let dbPromise;
 
 async function getDb() {
   if (!dbPromise) {
+    const dbPath = process.env.SQLITE_PATH
+      ? path.resolve(process.env.SQLITE_PATH)
+      : path.join(__dirname, '..', 'academy.db');
+
     dbPromise = open({
-      filename: path.join(__dirname, '..', 'academy.db'),
+      filename: dbPath,
       driver: sqlite3.Database
     });
   }

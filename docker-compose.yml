@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  academy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-web-cyber-security-academy
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - SQLITE_PATH=/app/data/academy.db
+    volumes:
+      - academy_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  academy_data:
