@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { generateQuiz } from '../services/api';
+import { useLanguage } from '../hooks/useLanguage';
 
 function Quiz() {
   const [params] = useSearchParams();
   const topic = params.get('topic') || '';
   const difficulty = params.get('difficulty') || 'Beginner';
+  const { t, apiLanguage } = useLanguage();
 
   const [quiz, setQuiz] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,22 +19,24 @@ function Quiz() {
     }
 
     setLoading(true);
-    generateQuiz({ topic, difficulty })
+    generateQuiz({ topic, difficulty, language: apiLanguage })
       .then(setQuiz)
       .catch((err) => {
-        setError(err?.response?.data?.error || 'Failed to generate quiz');
+        setError(err?.response?.data?.error || t.failedQuiz);
       })
       .finally(() => setLoading(false));
-  }, [topic, difficulty]);
+  }, [topic, difficulty, apiLanguage, t.failedQuiz]);
 
   if (!topic) {
-    return <p className="text-slate-300">Select a topic from the Topics page first.</p>;
+    return <p className="text-slate-300">{t.selectTopicFirst}</p>;
   }
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold">Quiz: {topic}</h1>
-      {loading && <p className="text-slate-400">Generating quiz...</p>}
+      <h1 className="text-2xl font-semibold">
+        {t.quizFor}: {topic}
+      </h1>
+      {loading && <p className="text-slate-400">{t.generatingQuiz}</p>}
       {error && <p className="text-red-400">{error}</p>}
 
       {quiz?.questions?.map((question, idx) => (
@@ -46,8 +50,10 @@ function Quiz() {
             ))}
           </ul>
           <details className="mt-3 rounded border border-slate-700 p-2 text-sm">
-            <summary className="cursor-pointer font-medium">Show Answer & Explanation</summary>
-            <p className="mt-2 text-slate-300">Answer: {question.correct_answer}</p>
+            <summary className="cursor-pointer font-medium">{t.showAnswer}</summary>
+            <p className="mt-2 text-slate-300">
+              {t.answer}: {question.correct_answer}
+            </p>
             <p className="text-slate-400">{question.explanation}</p>
           </details>
         </article>

@@ -1,4 +1,4 @@
-function ProgressTracker({ summary = [] }) {
+function ProgressTracker({ summary = [], labels }) {
   const totals = summary.reduce(
     (acc, row) => {
       acc.modules += Number(row.moduleCount || 0);
@@ -12,9 +12,9 @@ function ProgressTracker({ summary = [] }) {
 
   return (
     <section className="rounded-lg border border-slate-700 bg-slate-900 p-4">
-      <h2 className="text-lg font-semibold">Learning Progress</h2>
+      <h2 className="text-lg font-semibold">{labels.learningProgress}</h2>
       <p className="mt-1 text-sm text-slate-300">
-        {totals.completed} of {totals.modules} modules completed ({percent}%)
+        {totals.completed} {labels.modulesCompleted} {totals.modules} {labels.modulesCompletedTail} ({percent}%)
       </p>
       <div className="mt-3 h-2 w-full overflow-hidden rounded bg-slate-700">
         <div className="h-full bg-primary-500" style={{ width: `${percent}%` }} />

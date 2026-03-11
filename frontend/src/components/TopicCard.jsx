@@ -1,4 +1,4 @@
-function TopicCard({ topic, onSelect, selected }) {
+function TopicCard({ topic, onSelect, selected, subtitle }) {
   return (
     <button
       type="button"
@@ -10,7 +10,7 @@ function TopicCard({ topic, onSelect, selected }) {
       }`}
     >
       <p className="font-medium">{topic}</p>
-      <p className="mt-1 text-sm text-slate-400">Generate syllabus, labs, and quiz for this topic.</p>
+      <p className="mt-1 text-sm text-slate-400">{subtitle}</p>
     </button>
   );
 }

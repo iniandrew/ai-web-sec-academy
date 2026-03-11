@@ -1,4 +1,4 @@
-function ModuleViewer({ modules = [], progressMap = {}, onToggle }) {
+function ModuleViewer({ modules = [], progressMap = {}, onToggle, doneLabel }) {
   return (
     <div className="space-y-4">
       {modules.map((module, idx) => {
@@ -18,7 +18,7 @@ function ModuleViewer({ modules = [], progressMap = {}, onToggle }) {
                   onChange={(event) => onToggle(module.title, event.target.checked)}
                   className="h-4 w-4"
                 />
-                Done
+                {doneLabel}
               </label>
             </div>
 

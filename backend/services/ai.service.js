@@ -39,26 +39,26 @@ function sanitizeValue(value) {
   return value;
 }
 
-async function generateSyllabus(topic, difficulty) {
-  const prompt = prompts.syllabusPrompt(topic, difficulty);
+async function generateSyllabus(topic, difficulty, language) {
+  const prompt = prompts.syllabusPrompt(topic, difficulty, language);
   const raw = await callQwen(prompt);
   return sanitizeValue(extractJson(raw));
 }
 
-async function generatePractice(topic, difficulty) {
-  const prompt = prompts.practicePrompt(topic, difficulty);
+async function generatePractice(topic, difficulty, language) {
+  const prompt = prompts.practicePrompt(topic, difficulty, language);
   const raw = await callQwen(prompt);
   return sanitizeValue(extractJson(raw));
 }
 
-async function generateQuiz(topic, difficulty) {
-  const prompt = prompts.quizPrompt(topic, difficulty);
+async function generateQuiz(topic, difficulty, language) {
+  const prompt = prompts.quizPrompt(topic, difficulty, language);
   const raw = await callQwen(prompt);
   return sanitizeValue(extractJson(raw));
 }
 
-async function chat(question, topic) {
-  const prompt = prompts.chatPrompt(question, topic);
+async function chat(question, topic, language) {
+  const prompt = prompts.chatPrompt(question, topic, language);
   const raw = await callQwen(prompt);
   return sanitizeValue(extractJson(raw));
 }

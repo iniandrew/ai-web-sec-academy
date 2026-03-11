@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopicCard from '../components/TopicCard';
 import { fetchTopics } from '../services/api';
+import { useLanguage } from '../hooks/useLanguage';
 
 function Topics() {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState('');
   const [difficulty, setDifficulty] = useState('Beginner');
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetchTopics().then(setTopics).catch(console.error);
@@ -23,10 +25,10 @@ function Topics() {
 
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Choose a Topic</h1>
+      <h1 className="text-2xl font-semibold">{t.chooseTopic}</h1>
       <div className="w-full max-w-xs">
         <label className="mb-1 block text-sm text-slate-300" htmlFor="difficulty">
-          Difficulty
+          {t.difficulty}
         </label>
         <select
           id="difficulty"
@@ -47,6 +49,7 @@ function Topics() {
             topic={topic}
             selected={selectedTopic === topic}
             onSelect={setSelectedTopic}
+            subtitle={`${t.generateSyllabus}, ${t.generateLab}, ${t.generateQuiz}`}
           />
         ))}
       </div>
@@ -58,7 +61,7 @@ function Topics() {
           disabled={!selectedTopic}
           className="rounded bg-primary-600 px-4 py-2 text-sm font-semibold disabled:opacity-40"
         >
-          Generate Syllabus
+          {t.generateSyllabus}
         </button>
         <button
           type="button"
@@ -66,7 +69,7 @@ function Topics() {
           disabled={!selectedTopic}
           className="rounded border border-slate-600 px-4 py-2 text-sm disabled:opacity-40"
         >
-          Generate Lab
+          {t.generateLab}
         </button>
         <button
           type="button"
@@ -74,7 +77,7 @@ function Topics() {
           disabled={!selectedTopic}
           className="rounded border border-slate-600 px-4 py-2 text-sm disabled:opacity-40"
         >
-          Generate Quiz
+          {t.generateQuiz}
         </button>
       </div>
     </div>

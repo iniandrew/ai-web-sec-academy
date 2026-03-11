@@ -1,6 +1,6 @@
 import CodeBlock from './CodeBlock';
 
-function LabViewer({ lab }) {
+function LabViewer({ lab, labels }) {
   if (!lab) {
     return null;
   }
@@ -11,17 +11,17 @@ function LabViewer({ lab }) {
       <p className="text-slate-300">{lab.scenario}</p>
 
       <div>
-        <p className="mb-2 text-sm font-medium text-slate-200">Vulnerable Code</p>
+        <p className="mb-2 text-sm font-medium text-slate-200">{labels.vulnerableCode}</p>
         <CodeBlock code={lab.vulnerable_code} language="javascript" />
       </div>
 
       <div>
-        <p className="font-medium">Task</p>
+        <p className="font-medium">{labels.task}</p>
         <p className="text-slate-300">{lab.task}</p>
       </div>
 
       <details className="rounded border border-slate-700 p-3">
-        <summary className="cursor-pointer font-medium">Hints</summary>
+        <summary className="cursor-pointer font-medium">{labels.hints}</summary>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-300">
           {(lab.hints || []).map((hint, idx) => (
             <li key={idx}>{hint}</li>
@@ -30,7 +30,7 @@ function LabViewer({ lab }) {
       </details>
 
       <details className="rounded border border-slate-700 p-3">
-        <summary className="cursor-pointer font-medium">Solution</summary>
+        <summary className="cursor-pointer font-medium">{labels.solution}</summary>
         <p className="mt-2 text-sm text-slate-300">{lab.solution}</p>
       </details>
     </section>
